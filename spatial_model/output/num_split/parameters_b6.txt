@@ -1,0 +1,16 @@
+total_agents	60
+number_of_cues	2
+informed_group_size	30
+num_replicates	100
+num_timesteps	10000
+time step_inc	0.1
+angular_error_sd	0.0
+max_turning_rate	2
+speed	1.0
+beta	6.0
+angular_thresh	0.6981317008
+set_omega	0.3
+omega_inc	0.012
+omega_dec	0.0008
+omega_max	0.4
+max_angle	1.0471975511965976
