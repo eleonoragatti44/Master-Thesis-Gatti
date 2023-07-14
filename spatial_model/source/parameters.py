@@ -16,7 +16,7 @@ num_timesteps = 10000
 cue_reached = -1
 
 # Define system's parameters
-number_of_cues : int = 3
+number_of_cues : int = 2
 timestep_inc = 0.1
 total_agents = 60
 informed_group_size = 20
@@ -33,8 +33,8 @@ omega_dec = 0.0008
 omega_max = 0.4
 dist_thresh = 10.0
 start_dist = 450
-overall_angle = pi/4    # used for the symmetric case ('overall_angle' is split into 'number_of_cues' equal angles)
-max_angle = pi/3        # used for the asymmetric case ('max_angle' is split into 'number_of_cues' - 1 equal angles)
+overall_angle = 0.174533 #pi/4    # used for the symmetric case ('overall_angle' is split into 'number_of_cues' equal angles)
+max_angle = 0.174533 #pi/3        # used for the asymmetric case ('max_angle' is split into 'number_of_cues' - 1 equal angles)
 
 #agent = [Individual() for i in range(total_agents)]
 CS = [Cue() for i in range(number_of_cues)]
