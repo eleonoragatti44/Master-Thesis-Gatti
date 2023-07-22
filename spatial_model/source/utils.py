@@ -10,6 +10,7 @@ def SetupAgents(seed):
     """Setup agents with unit velocity vector and initial position depending on the symmetry."""
     global agent
     set_informed : int
+    #range_y = bottom_right.y - top_left.y
     # set seed for random variable
     if deterministic: rnd.seed(44)
     else: rnd.seed()
@@ -21,6 +22,10 @@ def SetupAgents(seed):
         else: set_informed = 100    # means uninformed
         agent[i].Setup(r_centre = RandomBoundedPoint(seed+i), direction = Vec2D(1.0, 0.0).rotate(rnd.uniform() * 360.0), max_turning_rate = max_turning_rate, speed = speed,
                     zone_of_deflection = zod, zone_of_perception = zop, angular_error_sd = angular_error_sd, omega = set_omega, informed = set_informed)
+        
+        # agent[i].Setup(r_centre = Vec2D(0, range_y/2), direction = Vec2D(1.0, 0), max_turning_rate = max_turning_rate, speed = speed,
+        #             zone_of_deflection = zod, zone_of_perception = zop, angular_error_sd = angular_error_sd, omega = set_omega, informed = set_informed)
+
 
 def RandomBoundedPoint(seed): 
     """Generate the initial position of the agent.
