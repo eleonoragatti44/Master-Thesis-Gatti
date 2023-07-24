@@ -10,22 +10,24 @@ def SetupAgents(seed):
     """Setup agents with unit velocity vector and initial position depending on the symmetry."""
     global agent
     set_informed : int
-    #range_y = bottom_right.y - top_left.y
+    range_y = bottom_right.y - top_left.y
     # set seed for random variable
     if deterministic: rnd.seed(44)
     else: rnd.seed()
 
-    for i in range(total_agents):
+    for i in range(total_agents//2):
         if informed_group_size != 0:
             if (i / informed_group_size < number_of_cues): set_informed = i // informed_group_size
             else: set_informed = 100
         else: set_informed = 100    # means uninformed
-        agent[i].Setup(r_centre = RandomBoundedPoint(seed+i), direction = Vec2D(1.0, 0.0).rotate(rnd.uniform() * 360.0), max_turning_rate = max_turning_rate, speed = speed,
-                    zone_of_deflection = zod, zone_of_perception = zop, angular_error_sd = angular_error_sd, omega = set_omega, informed = set_informed)
+        #agent[i].Setup(r_centre = RandomBoundedPoint(seed+i), direction = Vec2D(1.0, 0.0).rotate(rnd.uniform() * 360.0), max_turning_rate = max_turning_rate, speed = speed,
+        #            zone_of_deflection = zod, zone_of_perception = zop, angular_error_sd = angular_error_sd, omega = set_omega, informed = set_informed)
         
-        # agent[i].Setup(r_centre = Vec2D(0, range_y/2), direction = Vec2D(1.0, 0), max_turning_rate = max_turning_rate, speed = speed,
-        #             zone_of_deflection = zod, zone_of_perception = zop, angular_error_sd = angular_error_sd, omega = set_omega, informed = set_informed)
+        agent[i].Setup(r_centre = Vec2D(0, range_y/2), direction = Vec2D(1.0, -0.1), max_turning_rate = max_turning_rate, speed = speed,
+                    zone_of_deflection = zod, zone_of_perception = zop, angular_error_sd = angular_error_sd, omega = set_omega, informed = set_informed)
 
+        agent[i+total_agents//2].Setup(r_centre = Vec2D(0, range_y/2), direction = Vec2D(1.0, 0.1), max_turning_rate = max_turning_rate, speed = speed,
+                    zone_of_deflection = zod, zone_of_perception = zop, angular_error_sd = angular_error_sd, omega = set_omega, informed = set_informed+1)
 
 def RandomBoundedPoint(seed): 
     """Generate the initial position of the agent.
