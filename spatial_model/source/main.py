@@ -5,6 +5,7 @@ from parameters import *
 from utils import *
 
 from numpy import random as rnd
+import numpy as np
 from math import pi, cos, sin
 from datetime import datetime
 from multiprocessing import Pool
@@ -35,7 +36,7 @@ def run(name_datetime, angular_thresh, beta, num_replicates):
     # output file for centroid positions
     with open(f"../output/centroid"+name_datetime+".txt", 'w') as f:
         f.write(f"replicate\ttime\tresult\tx\ty\tcue_reached\n")
-    
+    angular_thresh = np.radians(angular_thresh)
     # iterable for the multiprocessing pools
     items = [(i, name_datetime, angular_thresh, beta, num_replicates) for i in range(num_replicates)]
     # multiprocessing run over num_replicates

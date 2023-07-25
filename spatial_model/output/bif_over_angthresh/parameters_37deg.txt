@@ -8,7 +8,7 @@ angular_error_sd	0.0
 max_turning_rate	2
 speed	1.0
 beta	1.0
-angular_thresh	0.6108652381980153
+angular_thresh	0.6457718232379019
 set_omega	0.3
 omega_inc	0.012
 omega_dec	0.0008
