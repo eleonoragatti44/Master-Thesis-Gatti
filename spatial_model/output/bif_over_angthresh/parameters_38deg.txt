@@ -1,7 +1,7 @@
 total_agents	60
 number_of_cues	2
 informed_group_size	30
-num_replicates	1000
+num_replicates	2000
 num_timesteps	10000
 time step_inc	0.1
 angular_error_sd	0.0
