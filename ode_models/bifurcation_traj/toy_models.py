@@ -112,14 +112,31 @@ def f_XY_4eq(var, t, params):
     # then the lower target is defined by same x but opposite y
     Ja, Jmax, theta0, xt, yt = params
 
-    return [(np.cos(theta1) + np.cos(theta2)) * delta_inv(round(abs(x-xt)/xt,2)), #* delta_inv(round(abs(x-xt)/xt,2) + round(abs(y-yt))/yt) * delta_inv(round(abs(x-xt)/xt,2) + round(abs(y+yt))/yt), # x
+    return [(np.cos(theta1) + np.cos(theta2)) * delta_inv(round(abs(x-xt)/xt,2)), # x
 
-            (np.sin(theta1) + np.sin(theta2)) * delta_inv(round(abs(x-xt)/xt,2)), #* delta_inv(round(abs(x-xt)/xt,2) + round(abs(y-yt))/yt) * delta_inv(round(abs(x-xt)/xt,2) + round(abs(y+yt))/yt), # y 
+            (np.sin(theta1) + np.sin(theta2)) * delta_inv(round(abs(x-xt)/xt,2)), # y 
 
             -Ja*np.sin(theta1-theta2) - Jmax*theta_heav(theta0-abs(theta1-sign(yt-y)*omega(x, y, xt, yt)))*np.sin(theta1-sign(yt-y)*omega(x, y, xt, yt)),   # Theta 1
 
             Ja*np.sin(theta1-theta2)- Jmax*theta_heav(theta0-abs(theta2-sign(-yt-y)*omega(x, y, xt, -yt)))*np.sin(theta2-sign(-yt-y)*omega(x, y, xt, -yt))     # Theta 2
             ]
+
+def f_XY_4eq_noise(var, t, params):
+    x, y, theta1, theta2 = var
+    Ja, Jmax, theta0, xt, yt, gamma, T = params
+
+    # Random noise terms
+    random_noise_1 = np.random.normal(loc=0, scale=np.sqrt(2 * T / gamma))
+    random_noise_2 = np.random.normal(loc=0, scale=np.sqrt(2 * T / gamma))
+    return [
+        (np.cos(theta1) + np.cos(theta2)) * delta_inv(round(abs(x-xt)/xt,2)),
+        (np.sin(theta1) + np.sin(theta2)) * delta_inv(round(abs(x-xt)/xt,2)),
+        (-Ja*np.sin(theta1-theta2) - Jmax*theta_heav(theta0-abs(theta1-sign(yt-y)*omega(x, y, xt, yt)))*np.sin(theta1-sign(yt-y)*omega(x, y, xt, yt))) + np.sqrt(2 * T / gamma) * random_noise_1,
+        (Ja*np.sin(theta1-theta2)- Jmax*theta_heav(theta0-abs(theta2-sign(-yt-y)*omega(x, y, xt, -yt)))*np.sin(theta2-sign(-yt-y)*omega(x, y, xt, -yt))) + np.sqrt(2 * T / gamma) * random_noise_2
+    ]
+
+# Rest of your code...
+
 
 # PLOT
 
