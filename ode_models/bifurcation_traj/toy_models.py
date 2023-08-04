@@ -188,10 +188,10 @@ def plot_thetasJs(res):
     plt.show()
 
 # plotting thetas and Js over time
-def plot_thetas(res):
+def plot_thetas(res,t):
     fig, ax = plt.subplots(1, 1, sharex=True, figsize=(8, 6))
-    ax.plot(res.t, np.degrees(res.y[2]), label=r'$\theta_1$', alpha=.8)
-    ax.plot(res.t, np.degrees(res.y[3]), label=r'$\theta_2$', alpha=.8)
+    ax.plot(res.t[:t], np.degrees(res.y[2][:t]), label=r'$\theta_1$', alpha=.8)
+    ax.plot(res.t[:t], np.degrees(res.y[3][:t]), label=r'$\theta_2$', alpha=.8)
     ax.set_ylabel('Angle (deg)')
     #ax[0].set_ylim(-180, 180)
     ax.legend()
